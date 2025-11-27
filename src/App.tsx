@@ -2,12 +2,12 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { OnboardingProvider } from "@/contexts/OnboardingContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
-import Recipes from "./pages/Recipes";
+import Resources from "./pages/Resources";
 import Videos from "./pages/Videos";
 import OnboardingWelcome from "./pages/onboarding/OnboardingWelcome";
 import OnboardingGoal from "./pages/onboarding/OnboardingGoal";
@@ -28,8 +28,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/recipes" element={<Recipes />} />
-            <Route path="/videos" element={<Videos />} />
+            <Route path="/resources" element={<Resources />} />
+            <Route path="/recipes" element={<Navigate to="/resources?tab=recipes" replace />} />
+            <Route path="/videos" element={<Navigate to="/resources?tab=videos" replace />} />
             <Route path="/onboarding" element={<OnboardingWelcome />} />
             <Route path="/onboarding/goal" element={<OnboardingGoal />} />
             <Route path="/onboarding/plan" element={<OnboardingPlan />} />
