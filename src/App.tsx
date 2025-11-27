@@ -9,6 +9,7 @@ import NotFound from "./pages/NotFound";
 import OnboardingWelcome from "./pages/onboarding/OnboardingWelcome";
 import OnboardingGoal from "./pages/onboarding/OnboardingGoal";
 import OnboardingPlan from "./pages/onboarding/OnboardingPlan";
+import OnboardingVault from "./pages/onboarding/OnboardingVault";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
             <Route path="/onboarding" element={<OnboardingWelcome />} />
             <Route path="/onboarding/goal" element={<OnboardingGoal />} />
             <Route path="/onboarding/plan" element={<OnboardingPlan />} />
+            <Route path="/onboarding/vault" element={<OnboardingVault />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
