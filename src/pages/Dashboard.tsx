@@ -93,10 +93,10 @@ const Dashboard = () => {
             <span className="font-bold text-lg text-foreground">FastingHero</span>
           </div>
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            <a href="#" className="text-foreground font-medium">Dashboard</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Progress</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Community</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Resources</a>
+            <button className="text-foreground font-medium">Dashboard</button>
+            <button className="text-muted-foreground hover:text-foreground transition-colors">Progress</button>
+            <button className="text-muted-foreground hover:text-foreground transition-colors">Community</button>
+            <button onClick={() => navigate('/resources')} className="text-muted-foreground hover:text-foreground transition-colors">Resources</button>
           </nav>
           <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
             <span className="text-sm font-medium text-primary">U</span>
@@ -332,7 +332,7 @@ const Dashboard = () => {
               <p className="text-sm text-muted-foreground mb-3">
                 Check out our guides to get the most out of FastingHero.
               </p>
-              <Button variant="outline" size="sm" className="w-full">
+              <Button variant="outline" size="sm" className="w-full" onClick={() => navigate('/resources')}>
                 View Resources
               </Button>
             </motion.div>
