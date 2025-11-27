@@ -17,7 +17,7 @@ export const Navbar = () => {
           {/* CTA */}
           <Button variant="hero" size="sm">
             <DollarSign className="w-4 h-4" />
-            Start Earning
+            Start Your Vault
           </Button>
         </div>
       </div>

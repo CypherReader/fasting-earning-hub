@@ -6,13 +6,13 @@ const plans = [
     name: "VAULT",
     price: "$20",
     period: "/mo",
-    description: "Earn up to $20/mo back",
+    description: "Fully refundable based on fasting",
     features: [
       "Unlimited fasting tracking",
-      "Daily earning up to $2",
+      "Recover $2 per completed fast",
       "AI coaching (Cortex)",
       "Tribe membership",
-      "Monthly refunds",
+      "Monthly auto-refunds",
     ],
     popular: false,
     buttonVariant: "hero" as const,
@@ -21,7 +21,7 @@ const plans = [
     name: "VAULT PLUS",
     price: "$30",
     period: "/mo",
-    description: "Earn up to $30/mo back",
+    description: "Fully refundable ($3 per fast)",
     features: [
       "Everything in Vault",
       "1:1 coaching (2x/mo)",
@@ -43,7 +43,7 @@ export const PricingSection = () => {
             Simple, transparent pricing
           </h2>
           <p className="text-muted-foreground text-center text-lg mb-12">
-            Pay to commit. Earn it all back.
+            Pay to commit. Get it all back if you fast consistently.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -94,12 +94,12 @@ export const PricingSection = () => {
                 {/* CTA */}
                 <Button variant={plan.buttonVariant} size="lg" className="w-full">
                   <Sparkles className="w-4 h-4" />
-                  Start Earning
+                  Start Your Vault
                 </Button>
 
                 {/* Net cost */}
                 <p className="text-sm text-muted-foreground mt-4 text-center">
-                  Net cost: <span className="text-primary font-semibold">$0</span> if disciplined
+                  Net cost: <span className="text-primary font-semibold">$0</span> if you fast consistently
                 </p>
               </div>
             ))}

@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 const activities = [
-  { name: "Sarah M.", action: "earned $2.00", time: "2m ago" },
+  { name: "Sarah M.", action: "recovered $2.00", time: "2m ago" },
   { name: "Mike R.", action: "completed 18h fast", time: "5m ago" },
   { name: "Anna K.", action: "hit 30-day streak!", time: "7m ago" },
-  { name: "James D.", action: "earned $2.00", time: "9m ago" },
+  { name: "James D.", action: "got $2.00 refund", time: "9m ago" },
   { name: "Lisa B.", action: "completed 16h fast", time: "11m ago" },
-  { name: "Tom W.", action: "earned $2.00", time: "14m ago" },
-  { name: "Emma S.", action: "hit 7-day streak!", time: "16m ago" },
+  { name: "Tom W.", action: "reached $0 net cost", time: "14m ago" },
+  { name: "Emma S.", action: "recovered full $20", time: "16m ago" },
   { name: "Chris L.", action: "completed 24h fast", time: "19m ago" },
 ];
 

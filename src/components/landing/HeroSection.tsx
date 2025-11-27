@@ -58,40 +58,40 @@ export const HeroSection = () => {
             <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
               <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
               <span>
-                <span className="font-display font-semibold text-foreground">{memberCount.toLocaleString()}</span> people earning today
+                <span className="font-display font-semibold text-foreground">{memberCount.toLocaleString()}</span> paying $0/month
               </span>
             </div>
           </div>
 
           {/* Main headline */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
-            <span className="text-gradient-hero">Get Paid</span>
+            <span className="text-gradient-hero">The Fasting App</span>
             <br />
-            <span className="text-foreground">To Fast</span>
+            <span className="text-foreground">That Pays for Itself</span>
           </h1>
 
           {/* Subheadline */}
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
-            The only fasting app where your commitment pays dividends.
+            Deposit $20/month. Fast consistently. Get it all back.
             <br className="hidden md:block" />
-            Deposit $20. Earn it all back. Every month.
+            The only fasting app that costs $0 if you're disciplined.
           </p>
 
-          {/* App mockup showing earnings */}
+          {/* App mockup showing recovery */}
           <div className="relative mb-10 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
             <div className="mx-auto max-w-xs">
               <div className="bg-card rounded-3xl p-6 border border-border shadow-2xl">
-                <div className="text-sm text-muted-foreground mb-2">Your Vault Balance</div>
-                <div className="font-display text-5xl font-bold text-primary mb-4">$127.50</div>
+                <div className="text-sm text-muted-foreground mb-2">Deposit Recovered</div>
+                <div className="font-display text-5xl font-bold text-primary mb-4">$18 / $20</div>
                 <div className="bg-muted rounded-full h-3 mb-3 overflow-hidden">
-                  <div className="bg-gradient-gold h-full rounded-full" style={{ width: "87%" }} />
+                  <div className="bg-gradient-gold h-full rounded-full" style={{ width: "90%" }} />
                 </div>
                 <div className="flex justify-between text-sm">
                   <span className="text-secondary flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-secondary" />
-                    Fast Complete
+                    9 Fasts Complete
                   </span>
-                  <span className="text-muted-foreground">87% earned</span>
+                  <span className="text-muted-foreground">Net cost: $2</span>
                 </div>
               </div>
             </div>
@@ -101,7 +101,7 @@ export const HeroSection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <Button variant="hero" size="hero" className="w-full sm:w-auto">
               <DollarSign className="w-5 h-5" />
-              Start Earning - $20/month
+              Start Your Vault - $20 Refundable
             </Button>
             <Button variant="heroOutline" size="lg" className="w-full sm:w-auto">
               <Users className="w-5 h-5" />
@@ -111,7 +111,7 @@ export const HeroSection = () => {
 
           {/* Trust line */}
           <p className="text-sm text-muted-foreground mt-6 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-            Net cost: <span className="text-primary font-semibold">$0</span> if you stay disciplined
+            Net cost: <span className="text-primary font-semibold">$0</span> if you fast consistently
           </p>
         </div>
       </div>
