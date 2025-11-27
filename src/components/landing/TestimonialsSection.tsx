@@ -1,6 +1,7 @@
 import { Star, CheckCircle, Lock, CreditCard, Shield } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { AnimatedSectionBackground } from "./AnimatedSectionBackground";
 
 const testimonials = [
   {
@@ -41,7 +42,6 @@ export const TestimonialsSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Auto-rotate testimonials on mobile
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % testimonials.length);
@@ -50,8 +50,10 @@ export const TestimonialsSection = () => {
   }, []);
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-dark" ref={ref}>
-      <div className="container px-4">
+    <section className="py-20 md:py-32 bg-gradient-dark relative overflow-hidden" ref={ref}>
+      <AnimatedSectionBackground variant="accent" showOrbs showGrid />
+
+      <div className="container px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -70,7 +72,7 @@ export const TestimonialsSection = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.15 }}
                 whileHover={{ y: -8, transition: { duration: 0.2 } }}
-                className={`bg-card rounded-xl p-6 border transition-all duration-300 ${
+                className={`bg-card/80 backdrop-blur rounded-xl p-6 border transition-all duration-300 ${
                   activeIndex === i ? "border-secondary/50 scale-105" : "border-border"
                 }`}
               >

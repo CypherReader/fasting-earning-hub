@@ -1,6 +1,7 @@
 import { Lock, RefreshCw, DollarSign } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { AnimatedSectionBackground } from "./AnimatedSectionBackground";
 
 const steps = [
   {
@@ -40,8 +41,10 @@ export const HowItWorksSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 md:py-32 bg-background" ref={ref}>
-      <div className="container px-4">
+    <section className="py-20 md:py-32 bg-background relative overflow-hidden" ref={ref}>
+      <AnimatedSectionBackground variant="default" showOrbs showGrid showParticles />
+
+      <div className="container px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -109,7 +112,7 @@ export const HowItWorksSection = () => {
                 className="relative z-10"
               >
                 <motion.div
-                  className={`bg-gradient-to-br ${step.gradient} rounded-2xl p-6 border border-border transition-all duration-300`}
+                  className={`bg-gradient-to-br ${step.gradient} backdrop-blur rounded-2xl p-6 border border-border transition-all duration-300`}
                   whileHover={{
                     borderColor: "hsl(var(--primary) / 0.5)",
                     boxShadow: "0 20px 40px -15px hsl(var(--primary) / 0.3)",
@@ -128,7 +131,7 @@ export const HowItWorksSection = () => {
                   {/* Icon */}
                   <motion.div
                     whileHover={{ rotate: 10, scale: 1.1 }}
-                    className={`w-14 h-14 rounded-xl bg-card flex items-center justify-center mb-4 ${step.iconColor}`}
+                    className={`w-14 h-14 rounded-xl bg-card/80 backdrop-blur flex items-center justify-center mb-4 ${step.iconColor}`}
                   >
                     <step.icon className="w-7 h-7" />
                   </motion.div>
