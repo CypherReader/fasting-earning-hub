@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { useOnboarding } from '@/contexts/OnboardingContext';
 import { cn } from '@/lib/utils';
+import FastingTimer from '@/components/dashboard/FastingTimer';
 
 const planNames: Record<string, string> = {
   '16:8': '16:8',
@@ -52,19 +53,29 @@ const Dashboard = () => {
     }
   }, [activeFast]);
 
-  const formatTime = (seconds: number) => {
-    const hrs = Math.floor(seconds / 3600);
-    const mins = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  const getTargetHours = () => {
+    const plan = state.fastingPlan || '16:8';
+    if (plan === '18:6') return 18;
+    if (plan === 'omad') return 23;
+    return 16;
   };
 
   const handleStartFast = () => {
     setActiveFast(true);
+    if (fastTime === 0) {
+      setChecklist(prev => prev.map(item => 
+        item.id === 'first_fast' ? { ...item, completed: true } : item
+      ));
+    }
+  };
+
+  const handlePauseFast = () => {
+    setActiveFast(false);
+  };
+
+  const handleStopFast = () => {
+    setActiveFast(false);
     setFastTime(0);
-    setChecklist(prev => prev.map(item => 
-      item.id === 'first_fast' ? { ...item, completed: true } : item
-    ));
   };
 
   const handleChecklistAction = (action: string) => {
@@ -171,42 +182,15 @@ const Dashboard = () => {
                   </span>
                 </div>
 
-                {/* Active Fast or Start Fast */}
-                {activeFast ? (
-                  <div className="bg-secondary/10 border border-secondary/30 rounded-xl p-4">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center gap-2">
-                        <Flame className="w-5 h-5 text-secondary" />
-                        <span className="font-medium text-foreground">Fast in Progress</span>
-                      </div>
-                      <span className="text-xs bg-secondary/20 text-secondary px-2 py-1 rounded-full">
-                        Active
-                      </span>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-4xl font-bold font-mono text-foreground mb-1">
-                        {formatTime(fastTime)}
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        Recovering: <span className="text-primary font-medium">$0.00 → $2.00</span>
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="text-center py-8 bg-muted/30 rounded-xl border border-dashed border-border">
-                    <Timer className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
-                    <h4 className="font-medium text-foreground mb-2">Ready to Start?</h4>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Begin your first fast and start recovering your $20
-                    </p>
-                    <Button
-                      className="bg-gradient-gold hover:scale-105 transition-transform shadow-gold-glow animate-pulse-gold"
-                      onClick={handleStartFast}
-                    >
-                      Start {state.fastingPlan || '16:8'} Fast
-                    </Button>
-                  </div>
-                )}
+                {/* Fasting Timer with Phase Indicators */}
+                <FastingTimer
+                  isActive={activeFast}
+                  elapsedSeconds={fastTime}
+                  targetHours={getTargetHours()}
+                  onStart={handleStartFast}
+                  onPause={handlePauseFast}
+                  onStop={handleStopFast}
+                />
               </div>
             </motion.div>
 
