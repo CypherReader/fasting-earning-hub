@@ -41,7 +41,7 @@ export const HowItWorksSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 md:py-32 bg-background relative overflow-hidden" ref={ref}>
+    <section id="how-it-works" className="py-20 md:py-32 bg-background relative overflow-hidden" ref={ref}>
       <AnimatedSectionBackground variant="default" showOrbs showGrid showParticles />
 
       <div className="container px-4 relative z-10">

@@ -44,12 +44,10 @@ export const FinalCTASection = () => {
           >
             <div className="text-center">
               <div className="font-display text-2xl md:text-4xl font-bold text-primary mb-1">
-                <AnimatedCounter value={20} prefix="$" countDown decimals={0} />
-                <span className="text-muted-foreground text-lg"> → </span>
-                <AnimatedCounter value={0} prefix="$" decimals={0} />
+                <AnimatedCounter value={87} suffix="%" />
               </div>
               <div className="text-xs md:text-sm text-muted-foreground">
-                Avg Net Cost (Disciplined)
+                Pay $0/Month
               </div>
             </div>
             <div className="text-center">
@@ -60,9 +58,9 @@ export const FinalCTASection = () => {
             </div>
             <div className="text-center">
               <div className="font-display text-2xl md:text-4xl font-bold text-accent mb-1">
-                <AnimatedCounter value={87} suffix="%" />
+                $<AnimatedCounter value={0} decimals={0} />
               </div>
-              <div className="text-xs md:text-sm text-muted-foreground">Get Full Refund</div>
+              <div className="text-xs md:text-sm text-muted-foreground">Net Cost (Disciplined)</div>
             </div>
           </motion.div>
 
