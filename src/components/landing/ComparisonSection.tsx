@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { AnimatedSectionBackground } from "./AnimatedSectionBackground";
 
 const features = [
-  { name: "Get money back", fastingHero: "$20/mo", others: false },
+  { name: "Refundable deposit", fastingHero: "✓ $20/mo", others: false },
   { name: "Financial commitment", fastingHero: true, others: false },
   { name: "Tribe accountability", fastingHero: true, others: "Some" },
   { name: "AI coaching", fastingHero: true, others: "Some" },
