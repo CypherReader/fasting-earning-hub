@@ -1,77 +1,129 @@
-import { Button } from "@/components/ui/button";
 import { DollarSign, Lock, CheckCircle, Shield, Quote } from "lucide-react";
-
-const stats = [
-  { value: "$0", label: "Avg Net Cost (Disciplined Users)" },
-  { value: "18 lbs", label: "Avg Weight Loss" },
-  { value: "87%", label: "Get Full Refund" },
-];
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { AnimatedCounter } from "./AnimatedCounter";
+import { MagneticButton } from "./MagneticButton";
 
 export const FinalCTASection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-20 md:py-32 bg-gradient-dark relative overflow-hidden">
+    <section className="py-20 md:py-32 bg-gradient-dark relative overflow-hidden" ref={ref}>
       {/* Spotlight effect */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[150px] pointer-events-none" />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 1 }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/10 rounded-full blur-[150px] pointer-events-none"
+      />
 
       <div className="container px-4 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           {/* Headline */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6"
+          >
             <span className="text-gradient-hero">Start Fasting</span>
             <br />
             <span className="text-foreground">For Free Today</span>
-          </h2>
+          </motion.h2>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 md:gap-8 mb-10">
-            {stats.map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="font-display text-2xl md:text-4xl font-bold text-primary mb-1">
-                  {stat.value}
-                </div>
-                <div className="text-xs md:text-sm text-muted-foreground">
-                  {stat.label}
-                </div>
+          {/* Stats with animated counters */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="grid grid-cols-3 gap-4 md:gap-8 mb-10"
+          >
+            <div className="text-center">
+              <div className="font-display text-2xl md:text-4xl font-bold text-primary mb-1">
+                <AnimatedCounter value={20} prefix="$" countDown decimals={0} />
+                <span className="text-muted-foreground text-lg"> → </span>
+                <AnimatedCounter value={0} prefix="$" decimals={0} />
               </div>
-            ))}
-          </div>
+              <div className="text-xs md:text-sm text-muted-foreground">
+                Avg Net Cost (Disciplined)
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="font-display text-2xl md:text-4xl font-bold text-secondary mb-1">
+                <AnimatedCounter value={18} suffix=" lbs" />
+              </div>
+              <div className="text-xs md:text-sm text-muted-foreground">Avg Weight Loss</div>
+            </div>
+            <div className="text-center">
+              <div className="font-display text-2xl md:text-4xl font-bold text-accent mb-1">
+                <AnimatedCounter value={87} suffix="%" />
+              </div>
+              <div className="text-xs md:text-sm text-muted-foreground">Get Full Refund</div>
+            </div>
+          </motion.div>
 
           {/* CTA */}
-          <Button variant="hero" size="hero" className="w-full md:w-auto mb-6 animate-pulse-gold">
-            <DollarSign className="w-5 h-5" />
-            Join 12,847 Members Paying $0/Month
-          </Button>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mb-6"
+          >
+            <MagneticButton className="text-lg">
+              <DollarSign className="w-5 h-5" />
+              Join 12,847 Members Paying $0/Month
+            </MagneticButton>
+          </motion.div>
 
           {/* Trust signals */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground mb-10">
-            <div className="flex items-center gap-1.5">
-              <Lock className="w-4 h-4 text-secondary" />
-              Secure Payment
-            </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle className="w-4 h-4 text-secondary" />
-              Cancel Anytime
-            </div>
-            <div className="flex items-center gap-1.5">
-              <Shield className="w-4 h-4 text-secondary" />
-              Full Refund Guarantee
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-wrap justify-center gap-4 md:gap-6 text-sm text-muted-foreground mb-10"
+          >
+            {[
+              { icon: Lock, text: "Secure Payment" },
+              { icon: CheckCircle, text: "Cancel Anytime" },
+              { icon: Shield, text: "Full Refund Guarantee" },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center gap-1.5"
+              >
+                <item.icon className="w-4 h-4 text-secondary" />
+                {item.text}
+              </motion.div>
+            ))}
+          </motion.div>
 
           {/* Final testimonial */}
-          <div className="bg-card rounded-xl p-6 border border-border max-w-lg mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            whileHover={{ scale: 1.02 }}
+            className="bg-card rounded-xl p-6 border border-border max-w-lg mx-auto"
+          >
             <Quote className="w-8 h-8 text-primary/30 mb-3" />
             <p className="text-foreground italic mb-4">
-              "I've tried every fasting app. This is the only one that worked because I had real money on the line."
+              "I've tried every fasting app. This is the only one that worked because I had real
+              money on the line."
             </p>
             <div className="flex items-center justify-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-semibold">
+              <motion.div
+                animate={{ scale: [1, 1.1, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-semibold"
+              >
                 MR
-              </div>
+              </motion.div>
               <span className="font-semibold">Michael R.</span>
               <span className="text-muted-foreground text-sm">(Net cost: $0 for 8 months)</span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

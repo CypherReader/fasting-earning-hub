@@ -1,4 +1,6 @@
-import { Lock, RefreshCw, DollarSign, ArrowRight } from "lucide-react";
+import { Lock, RefreshCw, DollarSign } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const steps = [
   {
@@ -34,65 +36,146 @@ const steps = [
 ];
 
 export const HowItWorksSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-20 md:py-32 bg-background">
+    <section className="py-20 md:py-32 bg-background" ref={ref}>
       <div className="container px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4"
+          >
             How It Works
-          </h2>
-          <p className="text-muted-foreground text-center text-lg mb-16 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-muted-foreground text-center text-lg mb-16 max-w-2xl mx-auto"
+          >
             A simple system that turns your commitment into refunds
-          </p>
+          </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-            {/* Connection lines for desktop */}
-            <div className="hidden md:block absolute top-1/2 left-[33%] right-[33%] h-0.5 bg-border -translate-y-1/2 z-0">
-              <ArrowRight className="absolute left-1/4 top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 text-muted-foreground" />
-              <ArrowRight className="absolute right-1/4 top-1/2 -translate-y-1/2 translate-x-1/2 w-5 h-5 text-muted-foreground" />
-            </div>
+            {/* Animated money flow path */}
+            <svg
+              className="hidden md:block absolute top-1/2 left-0 right-0 h-2 -translate-y-1/2 z-0 overflow-visible"
+              style={{ width: "100%" }}
+            >
+              <motion.line
+                x1="16.5%"
+                y1="50%"
+                x2="83.5%"
+                y2="50%"
+                stroke="hsl(var(--border))"
+                strokeWidth="2"
+                strokeDasharray="8 8"
+                initial={{ pathLength: 0 }}
+                animate={isInView ? { pathLength: 1 } : {}}
+                transition={{ duration: 2, ease: "easeInOut" }}
+              />
+              {/* Traveling coin */}
+              <motion.circle
+                r="8"
+                fill="hsl(var(--primary))"
+                initial={{ cx: "16.5%", cy: "50%" }}
+                animate={
+                  isInView
+                    ? {
+                        cx: ["16.5%", "50%", "83.5%", "16.5%"],
+                      }
+                    : {}
+                }
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  repeatDelay: 1,
+                }}
+              />
+            </svg>
 
             {steps.map((step, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="relative z-10 animate-fade-in-up"
-                style={{ animationDelay: `${i * 0.15}s` }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.2 }}
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                className="relative z-10"
               >
-                <div className={`bg-gradient-to-br ${step.gradient} rounded-2xl p-6 border border-border hover:border-primary/30 transition-all duration-300 hover:scale-105`}>
+                <motion.div
+                  className={`bg-gradient-to-br ${step.gradient} rounded-2xl p-6 border border-border transition-all duration-300`}
+                  whileHover={{
+                    borderColor: "hsl(var(--primary) / 0.5)",
+                    boxShadow: "0 20px 40px -15px hsl(var(--primary) / 0.3)",
+                  }}
+                >
                   {/* Step number */}
-                  <div className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-card border-2 border-border flex items-center justify-center font-display font-bold text-primary">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : {}}
+                    transition={{ delay: i * 0.2 + 0.3, type: "spring" }}
+                    className="absolute -top-3 -left-3 w-10 h-10 rounded-full bg-card border-2 border-border flex items-center justify-center font-display font-bold text-primary"
+                  >
                     {step.number}
-                  </div>
+                  </motion.div>
 
                   {/* Icon */}
-                  <div className={`w-14 h-14 rounded-xl bg-card flex items-center justify-center mb-4 ${step.iconColor}`}>
+                  <motion.div
+                    whileHover={{ rotate: 10, scale: 1.1 }}
+                    className={`w-14 h-14 rounded-xl bg-card flex items-center justify-center mb-4 ${step.iconColor}`}
+                  >
                     <step.icon className="w-7 h-7" />
-                  </div>
+                  </motion.div>
 
                   {/* Content */}
                   <h3 className="text-xl font-bold mb-2">{step.title}</h3>
                   <p className="text-muted-foreground mb-2">{step.description}</p>
                   <p className="text-sm text-muted-foreground/80 mb-4">{step.detail}</p>
 
-                  {/* Visual */}
-                  <div className="font-display text-3xl font-bold text-primary">
+                  {/* Visual with animation */}
+                  <motion.div
+                    className="font-display text-3xl font-bold text-primary"
+                    whileHover={{ scale: 1.1 }}
+                  >
                     {step.visual}
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
 
                 {/* Arrow for mobile */}
                 {i < steps.length - 1 && (
-                  <div className="flex justify-center py-4 md:hidden">
-                    <ArrowRight className="w-6 h-6 text-muted-foreground rotate-90" />
-                  </div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={isInView ? { opacity: 1 } : {}}
+                    transition={{ delay: i * 0.2 + 0.5 }}
+                    className="flex justify-center py-4 md:hidden"
+                  >
+                    <motion.div
+                      animate={{ y: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <DollarSign className="w-6 h-6 text-primary" />
+                    </motion.div>
+                  </motion.div>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
 
-          <p className="text-center text-muted-foreground mt-12">
-            <span className="text-primary font-semibold font-display">87%</span> of users get their full deposit back every month
-          </p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 1 }}
+            className="text-center text-muted-foreground mt-12"
+          >
+            <span className="text-primary font-semibold font-display">87%</span> of users get their
+            full deposit back every month
+          </motion.p>
         </div>
       </div>
     </section>
