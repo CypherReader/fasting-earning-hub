@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Recipes from "./pages/Recipes";
+import Videos from "./pages/Videos";
 import OnboardingWelcome from "./pages/onboarding/OnboardingWelcome";
 import OnboardingGoal from "./pages/onboarding/OnboardingGoal";
 import OnboardingPlan from "./pages/onboarding/OnboardingPlan";
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/recipes" element={<Recipes />} />
+            <Route path="/videos" element={<Videos />} />
             <Route path="/onboarding" element={<OnboardingWelcome />} />
             <Route path="/onboarding/goal" element={<OnboardingGoal />} />
             <Route path="/onboarding/plan" element={<OnboardingPlan />} />
