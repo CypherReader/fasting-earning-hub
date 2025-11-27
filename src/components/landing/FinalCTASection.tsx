@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { DollarSign, Lock, CheckCircle, Shield, Quote } from "lucide-react";
 
 const stats = [
-  { value: "$127.50", label: "Avg Monthly Earnings" },
+  { value: "$0", label: "Avg Net Cost (Disciplined Users)" },
   { value: "18 lbs", label: "Avg Weight Loss" },
-  { value: "87%", label: "Success Rate" },
+  { value: "87%", label: "Get Full Refund" },
 ];
 
 export const FinalCTASection = () => {
@@ -17,9 +17,9 @@ export const FinalCTASection = () => {
         <div className="max-w-3xl mx-auto text-center">
           {/* Headline */}
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span className="text-gradient-hero">Start Earning</span>
+            <span className="text-gradient-hero">Start Fasting</span>
             <br />
-            <span className="text-foreground">Today</span>
+            <span className="text-foreground">For Free Today</span>
           </h2>
 
           {/* Stats */}
@@ -39,7 +39,7 @@ export const FinalCTASection = () => {
           {/* CTA */}
           <Button variant="hero" size="hero" className="w-full md:w-auto mb-6 animate-pulse-gold">
             <DollarSign className="w-5 h-5" />
-            Join 12,847 Members Earning Today
+            Join 12,847 Members Paying $0/Month
           </Button>
 
           {/* Trust signals */}
@@ -54,7 +54,7 @@ export const FinalCTASection = () => {
             </div>
             <div className="flex items-center gap-1.5">
               <Shield className="w-4 h-4 text-secondary" />
-              30-Day Guarantee
+              Full Refund Guarantee
             </div>
           </div>
 
@@ -62,14 +62,14 @@ export const FinalCTASection = () => {
           <div className="bg-card rounded-xl p-6 border border-border max-w-lg mx-auto">
             <Quote className="w-8 h-8 text-primary/30 mb-3" />
             <p className="text-foreground italic mb-4">
-              "I've tried every fasting app. This is the only one that worked because I had skin in the game."
+              "I've tried every fasting app. This is the only one that worked because I had real money on the line."
             </p>
             <div className="flex items-center justify-center gap-2">
               <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-xs font-semibold">
                 MR
               </div>
               <span className="font-semibold">Michael R.</span>
-              <CheckCircle className="w-4 h-4 text-secondary" />
+              <span className="text-muted-foreground text-sm">(Net cost: $0 for 8 months)</span>
             </div>
           </div>
         </div>

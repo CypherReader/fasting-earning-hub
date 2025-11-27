@@ -5,9 +5,9 @@ const testimonials = [
     initials: "SM",
     name: "Sarah M.",
     rating: 5,
-    quote: "Lost 22 lbs and got all my money back. Best $20 I ever spent.",
+    quote: "Lost 22 lbs and never paid a cent. Got every dollar back for 6 months.",
     lost: "22 lbs",
-    earned: "$180",
+    netCost: "$0 (6 months)",
   },
   {
     initials: "MR",
@@ -15,22 +15,22 @@ const testimonials = [
     rating: 5,
     quote: "18h fasts were impossible until I had skin in the game.",
     lost: "14 lbs",
-    earned: "$96",
+    netCost: "$4/month avg",
   },
   {
     initials: "AK",
     name: "Anna K.",
     rating: 5,
-    quote: "30-day streak and a full refund every month. Addictive.",
+    quote: "30-day streak and full refund every month. Addictive.",
     lost: "19 lbs",
-    earned: "$120",
+    netCost: "$0 (100% refund)",
   },
 ];
 
 const trustBadges = [
   { icon: Lock, text: "256-bit SSL Encryption" },
   { icon: CreditCard, text: "Stripe Secured Payments" },
-  { icon: CheckCircle, text: "30-Day Money-Back Guarantee" },
+  { icon: CheckCircle, text: "Full Refund Guarantee" },
   { icon: Star, text: "4.8/5 Average Rating" },
 ];
 
@@ -78,8 +78,8 @@ export const TestimonialsSection = () => {
                     <span className="text-secondary font-semibold">{testimonial.lost}</span>
                   </div>
                   <div>
-                    <span className="text-muted-foreground text-sm">Earned: </span>
-                    <span className="text-primary font-semibold font-display">{testimonial.earned}</span>
+                    <span className="text-muted-foreground text-sm">Net Cost: </span>
+                    <span className="text-primary font-semibold font-display">{testimonial.netCost}</span>
                   </div>
                 </div>
               </div>

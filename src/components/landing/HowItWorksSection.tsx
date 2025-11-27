@@ -1,4 +1,4 @@
-import { Lock, TrendingUp, DollarSign, ArrowRight } from "lucide-react";
+import { Lock, RefreshCw, DollarSign, ArrowRight } from "lucide-react";
 
 const steps = [
   {
@@ -6,15 +6,17 @@ const steps = [
     icon: Lock,
     title: "The Deposit",
     description: "Put your money where your goals are",
+    detail: "$20 goes into your Vault each month",
     visual: "$20",
     gradient: "from-destructive/20 to-primary/20",
     iconColor: "text-destructive",
   },
   {
     number: "2",
-    icon: TrendingUp,
-    title: "The Earning",
-    description: "Every fast = $2 earned back",
+    icon: RefreshCw,
+    title: "The Recovery",
+    description: "Every completed fast returns $2 of your deposit",
+    detail: "10 fasts = full $20 recovered",
     visual: "+$2",
     gradient: "from-background to-secondary/20",
     iconColor: "text-secondary",
@@ -23,8 +25,9 @@ const steps = [
     number: "3",
     icon: DollarSign,
     title: "The Refund",
-    description: "Full refund every month",
-    visual: "$20",
+    description: "Get your money back automatically each month",
+    detail: "Fast consistently = $0 net cost",
+    visual: "$0",
     gradient: "from-primary/20 to-gold-light/20",
     iconColor: "text-primary",
   },
@@ -39,7 +42,7 @@ export const HowItWorksSection = () => {
             How It Works
           </h2>
           <p className="text-muted-foreground text-center text-lg mb-16 max-w-2xl mx-auto">
-            A simple system that turns your commitment into savings
+            A simple system that turns your commitment into refunds
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
@@ -68,7 +71,8 @@ export const HowItWorksSection = () => {
 
                   {/* Content */}
                   <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                  <p className="text-muted-foreground mb-4">{step.description}</p>
+                  <p className="text-muted-foreground mb-2">{step.description}</p>
+                  <p className="text-sm text-muted-foreground/80 mb-4">{step.detail}</p>
 
                   {/* Visual */}
                   <div className="font-display text-3xl font-bold text-primary">
@@ -87,7 +91,7 @@ export const HowItWorksSection = () => {
           </div>
 
           <p className="text-center text-muted-foreground mt-12">
-            Average user earns <span className="text-primary font-semibold font-display">$18.73</span> back every month
+            <span className="text-primary font-semibold font-display">87%</span> of users get their full deposit back every month
           </p>
         </div>
       </div>
