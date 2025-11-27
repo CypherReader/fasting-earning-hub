@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { OnboardingProvider } from "@/contexts/OnboardingContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import Dashboard from "./pages/Dashboard";
 import OnboardingWelcome from "./pages/onboarding/OnboardingWelcome";
 import OnboardingGoal from "./pages/onboarding/OnboardingGoal";
 import OnboardingPlan from "./pages/onboarding/OnboardingPlan";
@@ -24,6 +25,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/onboarding" element={<OnboardingWelcome />} />
             <Route path="/onboarding/goal" element={<OnboardingGoal />} />
             <Route path="/onboarding/plan" element={<OnboardingPlan />} />
