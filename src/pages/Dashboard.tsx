@@ -11,6 +11,7 @@ import { useOnboarding } from '@/contexts/OnboardingContext';
 import { cn } from '@/lib/utils';
 import FastingTimer from '@/components/dashboard/FastingTimer';
 import StepTracker from '@/components/dashboard/StepTracker';
+import WeightTracker from '@/components/dashboard/WeightTracker';
 
 const planNames: Record<string, string> = {
   '16:8': '16:8',
@@ -218,19 +219,8 @@ const Dashboard = () => {
               ))}
             </div>
 
-            {/* Empty State for Charts */}
-            <motion.div
-              className="bg-card border border-border rounded-2xl p-8 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <TrendingUp className="w-12 h-12 text-muted-foreground/50 mx-auto mb-3" />
-              <h4 className="font-medium text-foreground mb-1">No data yet</h4>
-              <p className="text-sm text-muted-foreground">
-                Complete your first fast to see your progress charts
-              </p>
-            </motion.div>
+            {/* Weight Tracker with Chart */}
+            <WeightTracker />
           </div>
 
           {/* Sidebar - Right Side */}
