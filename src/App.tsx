@@ -8,7 +8,6 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Resources from "./pages/Resources";
-import Videos from "./pages/Videos";
 import OnboardingWelcome from "./pages/onboarding/OnboardingWelcome";
 import OnboardingGoal from "./pages/onboarding/OnboardingGoal";
 import OnboardingPlan from "./pages/onboarding/OnboardingPlan";
