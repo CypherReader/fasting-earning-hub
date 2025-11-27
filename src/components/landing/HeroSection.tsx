@@ -1,22 +1,13 @@
 import { DollarSign, Users } from "lucide-react";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ClockVideoBackground } from "./ClockVideoBackground";
 import { FloatingParticles } from "./FloatingParticles";
 import { FastingTimerHero } from "./FastingTimerHero";
 import { MagneticButton } from "./MagneticButton";
+import { RollingBenefits } from "./RollingBenefits";
 import { Button } from "@/components/ui/button";
 
 export const HeroSection = () => {
-  const [memberCount, setMemberCount] = useState(12847);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMemberCount((prev) => prev + Math.floor(Math.random() * 3));
-    }, 10000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Cinematic clock video background */}
@@ -29,39 +20,14 @@ export const HeroSection = () => {
 
       <div className="container relative z-10 px-4 py-20 md:py-32">
         <div className="max-w-5xl mx-auto text-center">
-          {/* Social proof */}
+          {/* Rolling benefits */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center justify-center gap-2 mb-8"
+            className="mb-8"
           >
-            <div className="flex -space-x-2">
-              {["SM", "MR", "AK", "JD", "LB"].map((initials, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: i * 0.1, type: "spring" }}
-                  className="w-8 h-8 rounded-full bg-card/80 backdrop-blur border-2 border-background flex items-center justify-center text-xs font-semibold text-muted-foreground"
-                >
-                  {initials}
-                </motion.div>
-              ))}
-            </div>
-            <div className="flex items-center gap-1.5 text-muted-foreground text-sm">
-              <motion.div
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="w-2 h-2 rounded-full bg-secondary"
-              />
-              <span>
-                <span className="font-display font-semibold text-foreground">
-                  {memberCount.toLocaleString()}
-                </span>{" "}
-                paying $0/month
-              </span>
-            </div>
+            <RollingBenefits />
           </motion.div>
 
           {/* Main headline - Large and impactful */}
