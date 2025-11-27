@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import FastingTimer from '@/components/dashboard/FastingTimer';
 import StepTracker from '@/components/dashboard/StepTracker';
 import WeightTracker from '@/components/dashboard/WeightTracker';
+import WaterTracker from '@/components/dashboard/WaterTracker';
 
 const planNames: Record<string, string> = {
   '16:8': '16:8',
@@ -298,6 +299,9 @@ const Dashboard = () => {
 
             {/* Step Tracker */}
             <StepTracker dailyGoal={10000} />
+
+            {/* Water Tracker */}
+            <WaterTracker dailyGoal={2500} />
 
             {/* Help Card */}
             <motion.div
