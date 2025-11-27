@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { DollarSign, Users } from "lucide-react";
 import { useEffect, useState } from "react";
+import { FastingTimerVisual } from "./FastingTimerVisual";
 
 const MoneyParticle = ({ delay, left }: { delay: number; left: number }) => (
   <div
@@ -27,6 +28,9 @@ export const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      {/* Fasting timer background visual */}
+      <FastingTimerVisual />
+      
       {/* Money particles background */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {[...Array(8)].map((_, i) => (
@@ -35,7 +39,7 @@ export const HeroSection = () => {
       </div>
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-card/50" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-card/50" />
 
       <div className="container relative z-10 px-4 py-20 md:py-32">
         <div className="max-w-4xl mx-auto text-center">
