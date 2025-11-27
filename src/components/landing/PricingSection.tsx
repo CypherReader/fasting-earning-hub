@@ -1,5 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { Check, Star, Sparkles } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { MagneticButton } from "./MagneticButton";
 
 const plans = [
   {
@@ -15,7 +17,6 @@ const plans = [
       "Monthly auto-refunds",
     ],
     popular: false,
-    buttonVariant: "hero" as const,
   },
   {
     name: "VAULT PLUS",
@@ -30,39 +31,63 @@ const plans = [
       "Priority support",
     ],
     popular: true,
-    buttonVariant: "hero" as const,
   },
 ];
 
 export const PricingSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section className="py-20 md:py-32 bg-gradient-dark">
+    <section className="py-20 md:py-32 bg-gradient-dark" ref={ref}>
       <div className="container px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-center mb-4"
+          >
             Simple, transparent pricing
-          </h2>
-          <p className="text-muted-foreground text-center text-lg mb-12">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-muted-foreground text-center text-lg mb-12"
+          >
             Pay to commit. Get it all back if you fast consistently.
-          </p>
+          </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {plans.map((plan, i) => (
-              <div
+              <motion.div
                 key={i}
-                className={`relative rounded-2xl p-8 transition-all duration-300 animate-fade-in-up ${
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.2 }}
+                whileHover={{
+                  y: -8,
+                  rotateY: 2,
+                  rotateX: 2,
+                  transition: { duration: 0.2 },
+                }}
+                className={`relative rounded-2xl p-8 transition-all duration-300 ${
                   plan.popular
                     ? "bg-gradient-to-br from-accent/20 to-purple/10 border-2 border-accent shadow-purple-glow"
                     : "bg-card border border-border hover:border-secondary/30"
                 }`}
-                style={{ animationDelay: `${i * 0.1}s` }}
               >
                 {/* Popular badge */}
                 {plan.popular && (
-                  <div className="absolute -top-3 left-6 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">
+                  <motion.div
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="absolute -top-3 left-6 bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1"
+                  >
                     <Star className="w-3 h-3 fill-current" />
                     MOST POPULAR
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* Plan name */}
@@ -72,9 +97,14 @@ export const PricingSection = () => {
 
                 {/* Price */}
                 <div className="flex items-baseline gap-1 mb-2">
-                  <span className="font-display text-5xl font-bold text-foreground">
+                  <motion.span
+                    initial={{ scale: 0.5 }}
+                    animate={isInView ? { scale: 1 } : {}}
+                    transition={{ delay: i * 0.2 + 0.3, type: "spring" }}
+                    className="font-display text-5xl font-bold text-foreground"
+                  >
                     {plan.price}
-                  </span>
+                  </motion.span>
                   <span className="text-muted-foreground">{plan.period}</span>
                 </div>
 
@@ -84,24 +114,37 @@ export const PricingSection = () => {
                 {/* Features */}
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, j) => (
-                    <li key={j} className="flex items-center gap-3">
-                      <Check className="w-5 h-5 text-secondary flex-shrink-0" />
+                    <motion.li
+                      key={j}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: i * 0.2 + j * 0.1 }}
+                      className="flex items-center gap-3"
+                    >
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={isInView ? { scale: 1 } : {}}
+                        transition={{ delay: i * 0.2 + j * 0.1, type: "spring" }}
+                      >
+                        <Check className="w-5 h-5 text-secondary flex-shrink-0" />
+                      </motion.div>
                       <span className="text-foreground">{feature}</span>
-                    </li>
+                    </motion.li>
                   ))}
                 </ul>
 
                 {/* CTA */}
-                <Button variant={plan.buttonVariant} size="lg" className="w-full">
+                <MagneticButton className="w-full justify-center">
                   <Sparkles className="w-4 h-4" />
                   Start Your Vault
-                </Button>
+                </MagneticButton>
 
                 {/* Net cost */}
                 <p className="text-sm text-muted-foreground mt-4 text-center">
-                  Net cost: <span className="text-primary font-semibold">$0</span> if you fast consistently
+                  Net cost: <span className="text-primary font-semibold">$0</span> if you fast
+                  consistently
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

@@ -1,4 +1,6 @@
 import { Star, CheckCircle, Lock, CreditCard, Shield } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 
 const testimonials = [
   {
@@ -35,35 +37,72 @@ const trustBadges = [
 ];
 
 export const TestimonialsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Auto-rotate testimonials on mobile
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="py-20 md:py-32 bg-gradient-dark">
+    <section className="py-20 md:py-32 bg-gradient-dark" ref={ref}>
       <div className="container px-4">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12">
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-12"
+          >
             Does this actually work?
-          </h2>
+          </motion.h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {testimonials.map((testimonial, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="bg-card rounded-xl p-6 border border-border hover:border-secondary/30 transition-all duration-300 animate-fade-in-up"
-                style={{ animationDelay: `${i * 0.1}s` }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.15 }}
+                whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                className={`bg-card rounded-xl p-6 border transition-all duration-300 ${
+                  activeIndex === i ? "border-secondary/50 scale-105" : "border-border"
+                }`}
               >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-sm font-semibold">
+                    <motion.div
+                      whileHover={{ rotate: 10 }}
+                      className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-sm font-semibold"
+                    >
                       {testimonial.initials}
-                    </div>
+                    </motion.div>
                     <div className="flex items-center gap-1.5">
                       <span className="font-semibold">{testimonial.name}</span>
-                      <CheckCircle className="w-4 h-4 text-secondary" />
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
+                      >
+                        <CheckCircle className="w-4 h-4 text-secondary" />
+                      </motion.div>
                     </div>
                   </div>
                   <div className="flex">
                     {[...Array(testimonial.rating)].map((_, j) => (
-                      <Star key={j} className="w-4 h-4 text-primary fill-primary" />
+                      <motion.div
+                        key={j}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                        transition={{ delay: i * 0.15 + j * 0.1 }}
+                      >
+                        <Star className="w-4 h-4 text-primary fill-primary" />
+                      </motion.div>
                     ))}
                   </div>
                 </div>
@@ -79,22 +118,46 @@ export const TestimonialsSection = () => {
                   </div>
                   <div>
                     <span className="text-muted-foreground text-sm">Net Cost: </span>
-                    <span className="text-primary font-semibold font-display">{testimonial.netCost}</span>
+                    <span className="text-primary font-semibold font-display">
+                      {testimonial.netCost}
+                    </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Carousel dots for mobile */}
+          <div className="flex justify-center gap-2 mb-8 md:hidden">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveIndex(i)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  activeIndex === i ? "bg-primary w-6" : "bg-muted"
+                }`}
+              />
             ))}
           </div>
 
           {/* Trust badges */}
-          <div className="flex flex-wrap justify-center gap-6 md:gap-10 text-sm text-muted-foreground">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.6 }}
+            className="flex flex-wrap justify-center gap-6 md:gap-10 text-sm text-muted-foreground"
+          >
             {trustBadges.map((badge, i) => (
-              <div key={i} className="flex items-center gap-2">
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center gap-2"
+              >
                 <badge.icon className="w-4 h-4 text-secondary" />
                 <span>{badge.text}</span>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
