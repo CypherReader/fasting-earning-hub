@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export const ClockVideoBackground = () => {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(42);
   const [hours, setHours] = useState(16);
+
+  // Parallax scroll effects
+  const { scrollY } = useScroll();
+  const clockY = useTransform(scrollY, [0, 500], [0, 150]);
+  const clockScale = useTransform(scrollY, [0, 500], [1, 0.8]);
+  const clockOpacity = useTransform(scrollY, [0, 400], [1, 0.3]);
+  const particlesY = useTransform(scrollY, [0, 500], [0, -100]);
+  const ringsY = useTransform(scrollY, [0, 500], [0, 200]);
+  const sweepRotate = useTransform(scrollY, [0, 1000], [0, 180]);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -45,8 +54,11 @@ export const ClockVideoBackground = () => {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Giant clock face - centered */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+      {/* Giant clock face with parallax */}
+      <motion.div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        style={{ y: clockY, scale: clockScale, opacity: clockOpacity }}
+      >
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -197,61 +209,66 @@ export const ClockVideoBackground = () => {
             </motion.div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* Sweeping light effect */}
+      {/* Sweeping light effect with parallax */}
       <motion.div
         className="absolute top-1/2 left-1/2 w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2"
         style={{
           background:
             "conic-gradient(from 0deg, transparent 0deg, hsl(var(--primary) / 0.1) 30deg, transparent 60deg)",
+          rotate: sweepRotate,
         }}
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
       />
 
-      {/* Floating time particles */}
-      {[...Array(15)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute text-primary/20 font-mono text-lg font-bold"
-          initial={{
-            x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1200),
-            y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
-          }}
-          animate={{
-            y: [null, -100],
-            opacity: [0, 0.4, 0],
-          }}
-          transition={{
-            duration: 8 + Math.random() * 4,
-            repeat: Infinity,
-            delay: Math.random() * 5,
-          }}
-        >
-          {["16h", "18h", "24h", "12h", "20h", "⏰", "🔥", "⚡"][i % 8]}
-        </motion.div>
-      ))}
+      {/* Floating time particles with parallax */}
+      <motion.div style={{ y: particlesY }}>
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-primary/20 font-mono text-lg font-bold"
+            initial={{
+              x: Math.random() * (typeof window !== "undefined" ? window.innerWidth : 1200),
+              y: Math.random() * (typeof window !== "undefined" ? window.innerHeight : 800),
+            }}
+            animate={{
+              y: [null, -100],
+              opacity: [0, 0.4, 0],
+            }}
+            transition={{
+              duration: 8 + Math.random() * 4,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+            }}
+          >
+            {["16h", "18h", "24h", "12h", "20h", "⏰", "🔥", "⚡"][i % 8]}
+          </motion.div>
+        ))}
+      </motion.div>
 
-      {/* Pulse rings from center */}
-      {[...Array(3)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/20"
-          initial={{ width: 100, height: 100, opacity: 0.5 }}
-          animate={{
-            width: [100, 800],
-            height: [100, 800],
-            opacity: [0.3, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            delay: i * 1.3,
-            ease: "easeOut",
-          }}
-        />
-      ))}
+      {/* Pulse rings with parallax */}
+      <motion.div style={{ y: ringsY }}>
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/20"
+            initial={{ width: 100, height: 100, opacity: 0.5 }}
+            animate={{
+              width: [100, 800],
+              height: [100, 800],
+              opacity: [0.3, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              delay: i * 1.3,
+              ease: "easeOut",
+            }}
+          />
+        ))}
+      </motion.div>
     </div>
   );
 };
