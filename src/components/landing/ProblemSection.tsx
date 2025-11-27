@@ -1,6 +1,7 @@
 import { X } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { AnimatedSectionBackground } from "./AnimatedSectionBackground";
 
 const problems = [
   "No accountability",
@@ -14,8 +15,10 @@ export const ProblemSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-dark" ref={ref}>
-      <div className="container px-4">
+    <section className="py-20 md:py-32 bg-gradient-dark relative overflow-hidden" ref={ref}>
+      <AnimatedSectionBackground variant="subtle" showOrbs showGrid />
+
+      <div className="container px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -34,7 +37,7 @@ export const ProblemSection = () => {
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 whileHover={{ x: 10, transition: { duration: 0.2 } }}
-                className="relative bg-card rounded-xl p-5 border border-border hover:border-destructive/30 transition-colors"
+                className="relative bg-card/80 backdrop-blur rounded-xl p-5 border border-border hover:border-destructive/30 transition-colors"
               >
                 <motion.div
                   initial={{ scaleY: 0 }}

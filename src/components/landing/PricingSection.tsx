@@ -2,6 +2,7 @@ import { Check, Star, Sparkles } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { MagneticButton } from "./MagneticButton";
+import { AnimatedSectionBackground } from "./AnimatedSectionBackground";
 
 const plans = [
   {
@@ -39,8 +40,10 @@ export const PricingSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-20 md:py-32 bg-gradient-dark" ref={ref}>
-      <div className="container px-4">
+    <section className="py-20 md:py-32 bg-gradient-dark relative overflow-hidden" ref={ref}>
+      <AnimatedSectionBackground variant="accent" showOrbs showGrid showParticles />
+
+      <div className="container px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
@@ -72,10 +75,10 @@ export const PricingSection = () => {
                   rotateX: 2,
                   transition: { duration: 0.2 },
                 }}
-                className={`relative rounded-2xl p-8 transition-all duration-300 ${
+                className={`relative rounded-2xl p-8 transition-all duration-300 backdrop-blur ${
                   plan.popular
                     ? "bg-gradient-to-br from-accent/20 to-purple/10 border-2 border-accent shadow-purple-glow"
-                    : "bg-card border border-border hover:border-secondary/30"
+                    : "bg-card/80 border border-border hover:border-secondary/30"
                 }`}
               >
                 {/* Popular badge */}

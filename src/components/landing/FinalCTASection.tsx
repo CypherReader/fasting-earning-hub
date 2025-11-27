@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { AnimatedCounter } from "./AnimatedCounter";
 import { MagneticButton } from "./MagneticButton";
+import { AnimatedSectionBackground } from "./AnimatedSectionBackground";
 
 export const FinalCTASection = () => {
   const ref = useRef(null);
@@ -10,7 +11,9 @@ export const FinalCTASection = () => {
 
   return (
     <section className="py-20 md:py-32 bg-gradient-dark relative overflow-hidden" ref={ref}>
-      {/* Spotlight effect */}
+      <AnimatedSectionBackground variant="accent" showOrbs showGrid showParticles />
+
+      {/* Extra spotlight effect */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -105,7 +108,7 @@ export const FinalCTASection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
             whileHover={{ scale: 1.02 }}
-            className="bg-card rounded-xl p-6 border border-border max-w-lg mx-auto"
+            className="bg-card/80 backdrop-blur rounded-xl p-6 border border-border max-w-lg mx-auto"
           >
             <Quote className="w-8 h-8 text-primary/30 mb-3" />
             <p className="text-foreground italic mb-4">
