@@ -10,6 +10,7 @@ import { Progress } from '@/components/ui/progress';
 import { useOnboarding } from '@/contexts/OnboardingContext';
 import { cn } from '@/lib/utils';
 import FastingTimer from '@/components/dashboard/FastingTimer';
+import StepTracker from '@/components/dashboard/StepTracker';
 
 const planNames: Record<string, string> = {
   '16:8': '16:8',
@@ -304,6 +305,9 @@ const Dashboard = () => {
                 </button>
               </div>
             </motion.div>
+
+            {/* Step Tracker */}
+            <StepTracker dailyGoal={10000} />
 
             {/* Help Card */}
             <motion.div
