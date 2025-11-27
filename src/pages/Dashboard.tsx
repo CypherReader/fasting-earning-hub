@@ -13,6 +13,7 @@ import FastingTimer from '@/components/dashboard/FastingTimer';
 import StepTracker from '@/components/dashboard/StepTracker';
 import WeightTracker from '@/components/dashboard/WeightTracker';
 import WaterTracker from '@/components/dashboard/WaterTracker';
+import MealTracker from '@/components/dashboard/MealTracker';
 
 const planNames: Record<string, string> = {
   '16:8': '16:8',
@@ -222,6 +223,9 @@ const Dashboard = () => {
 
             {/* Weight Tracker with Chart */}
             <WeightTracker />
+
+            {/* Meal Tracker */}
+            <MealTracker dailyCalorieGoal={1800} />
           </div>
 
           {/* Sidebar - Right Side */}
