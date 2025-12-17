@@ -6,85 +6,66 @@
 
 @layer base {
   :root {
-    --background: 220 14% 96%;
-    --foreground: 224 71% 4%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
-
-    --primary: 142 76% 36%;
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 38 92% 50%;
-    --secondary-foreground: 224 71% 4%;
-
-    --muted: 220 14% 90%;
-    --muted-foreground: 220 9% 46%;
-
-    --accent: 262 83% 58%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 220 13% 87%;
-    --input: 220 13% 87%;
-    --ring: 142 76% 36%;
-
-    --radius: 0.5rem;
-
-    /* FastingHero Custom Tokens - Light Mode */
-    --gold: 38 92% 50%;
-    --gold-light: 45 93% 60%;
-    --emerald: 142 76% 36%;
-    --emerald-dark: 142 76% 28%;
-    --purple: 262 83% 58%;
-    --slate-dark: 224 71% 4%;
-    --slate-darker: 224 71% 4%;
-    
-    /* Gradients */
-    --gradient-gold: linear-gradient(135deg, hsl(var(--emerald)) 0%, hsl(var(--gold)) 100%);
-    --gradient-premium: linear-gradient(135deg, hsl(var(--purple)) 0%, hsl(338 75% 56%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(220 14% 90%) 0%, hsl(220 14% 96%) 100%);
-    
-    /* Shadows */
-    --shadow-gold: 0 8px 32px hsl(var(--gold) / 0.2);
-    --shadow-emerald: 0 8px 32px hsl(var(--emerald) / 0.2);
-    --shadow-purple: 0 8px 32px hsl(var(--purple) / 0.2);
-
-    --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 224 71% 4%;
-    --sidebar-primary: 142 76% 36%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 14% 90%;
-    --sidebar-accent-foreground: 224 71% 4%;
-    --sidebar-border: 220 13% 87%;
-    --sidebar-ring: 142 76% 36%;
-  }
-
-  .dark {
+    /* Dark Neon Aesthetic - Default */
     --background: 222 47% 4%;
     --foreground: 210 40% 98%;
-    --card: 217 33% 10%;
+
+    --card: 220 40% 8%;
     --card-foreground: 210 40% 98%;
-    --popover: 217 33% 10%;
+
+    --popover: 220 40% 8%;
     --popover-foreground: 210 40% 98%;
-    --primary: 38 92% 56%;
+
+    --primary: 187 100% 50%;
     --primary-foreground: 222 47% 4%;
-    --secondary: 160 84% 39%;
+
+    --secondary: 271 81% 56%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
+
+    --muted: 220 30% 15%;
     --muted-foreground: 215 20% 65%;
+
     --accent: 271 81% 56%;
     --accent-foreground: 210 40% 98%;
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 38 92% 56%;
+
+    --border: 220 30% 18%;
+    --input: 220 30% 18%;
+    --ring: 187 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Fasting Hero Custom Tokens */
+    --cyan: 187 100% 50%;
+    --cyan-glow: 187 100% 60%;
+    --purple: 271 81% 56%;
+    --purple-glow: 271 81% 70%;
+    --neon-pink: 330 100% 60%;
+    
+    /* Glass effect colors */
+    --glass-bg: 220 40% 8% / 0.6;
+    --glass-border: 210 40% 98% / 0.1;
+    
+    /* Gradients */
+    --gradient-neon: linear-gradient(135deg, hsl(var(--cyan)) 0%, hsl(var(--purple)) 100%);
+    --gradient-premium: linear-gradient(135deg, hsl(var(--purple)) 0%, hsl(var(--neon-pink)) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(220 40% 10%) 0%, hsl(222 47% 4%) 100%);
+    
+    /* Shadows */
+    --shadow-cyan: 0 8px 32px hsl(var(--cyan) / 0.3);
+    --shadow-purple: 0 8px 32px hsl(var(--purple) / 0.3);
+    --shadow-neon: 0 0 60px hsl(var(--cyan) / 0.2), 0 0 100px hsl(var(--purple) / 0.1);
+
+    --sidebar-background: 220 40% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 222 47% 4%;
+    --sidebar-accent: 220 30% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 220 30% 18%;
+    --sidebar-ring: 187 100% 50%;
   }
 }
 
@@ -108,46 +89,76 @@
 }
 
 @layer utilities {
-  .text-gradient-gold {
+  .text-gradient-neon {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--gold)) 0%, hsl(var(--gold-light)) 100%);
+    background-image: linear-gradient(135deg, hsl(var(--cyan)) 0%, hsl(var(--purple)) 100%);
   }
   
   .text-gradient-hero {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(var(--slate-dark)) 0%, hsl(var(--primary)) 100%);
+    background-image: linear-gradient(135deg, hsl(var(--cyan)) 0%, hsl(var(--purple)) 100%);
   }
   
-  .bg-gradient-gold {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+  .text-gradient-premium {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--purple)) 0%, hsl(var(--neon-pink)) 100%);
+  }
+  
+  .bg-gradient-neon {
+    background: linear-gradient(135deg, hsl(var(--cyan)) 0%, hsl(var(--purple)) 100%);
   }
   
   .bg-gradient-premium {
-    background: linear-gradient(135deg, hsl(var(--accent)) 0%, hsl(338 75% 56%) 100%);
+    background: linear-gradient(135deg, hsl(var(--purple)) 0%, hsl(var(--neon-pink)) 100%);
   }
   
   .bg-gradient-dark {
-    background: linear-gradient(180deg, hsl(var(--muted)) 0%, hsl(var(--background)) 100%);
+    background: linear-gradient(180deg, hsl(220 40% 10%) 0%, hsl(222 47% 4%) 100%);
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border));
+  }
+
+  .glass-strong {
+    background: hsl(220 40% 8% / 0.8);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid hsl(210 40% 98% / 0.15);
   }
   
-  .shadow-gold-glow {
-    box-shadow: 0 10px 40px -10px hsl(var(--gold) / 0.5);
-  }
-  
-  .shadow-emerald-glow {
-    box-shadow: 0 0 30px hsl(var(--emerald) / 0.3);
+  .shadow-cyan-glow {
+    box-shadow: 0 0 30px hsl(var(--cyan) / 0.4), 0 0 60px hsl(var(--cyan) / 0.2);
   }
   
   .shadow-purple-glow {
-    box-shadow: 0 0 40px hsl(var(--purple) / 0.4);
+    box-shadow: 0 0 30px hsl(var(--purple) / 0.4), 0 0 60px hsl(var(--purple) / 0.2);
+  }
+
+  .shadow-neon-glow {
+    box-shadow: 0 0 40px hsl(var(--cyan) / 0.3), 0 0 80px hsl(var(--purple) / 0.2);
+  }
+
+  .border-glow-cyan {
+    border-color: hsl(var(--cyan) / 0.3);
+    box-shadow: inset 0 0 20px hsl(var(--cyan) / 0.1);
+  }
+
+  .border-glow-purple {
+    border-color: hsl(var(--purple) / 0.3);
+    box-shadow: inset 0 0 20px hsl(var(--purple) / 0.1);
   }
   
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
   
-  .animate-pulse-gold {
-    animation: pulse-gold 2s ease-in-out infinite;
+  .animate-pulse-neon {
+    animation: pulse-neon 2s ease-in-out infinite;
   }
 
   .animate-counter {
@@ -170,8 +181,19 @@
     animation: float-particle 6s ease-in-out infinite;
   }
 
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+
   .bg-gradient-radial {
     background: radial-gradient(circle, var(--tw-gradient-from), var(--tw-gradient-to));
+  }
+
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(hsl(var(--cyan) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--cyan) / 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
   }
 }
 
@@ -180,21 +202,19 @@
   50% { transform: translateY(-20px); }
 }
 
-@keyframes pulse-gold {
-  0%, 100% { box-shadow: 0 0 20px hsl(var(--gold) / 0.4); }
-  50% { box-shadow: 0 0 40px hsl(var(--gold) / 0.7); }
+@keyframes pulse-neon {
+  0%, 100% { box-shadow: 0 0 20px hsl(var(--cyan) / 0.4); }
+  50% { box-shadow: 0 0 40px hsl(var(--cyan) / 0.7), 0 0 60px hsl(var(--purple) / 0.3); }
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
 
 @keyframes counter-roll {
   0% { transform: translateY(-100%); opacity: 0; }
   100% { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes money-float {
-  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
 }
 
 @keyframes fade-in-up {
@@ -230,8 +250,4 @@
 
 .animate-ticker {
   animation: scroll-ticker 30s linear infinite;
-}
-
-.money-particle {
-  animation: money-float 8s ease-in-out infinite;
 }
