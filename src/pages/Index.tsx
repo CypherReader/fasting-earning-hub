@@ -1,13 +1,8 @@
 import { Navbar } from "@/components/landing/Navbar";
 import { HeroSection } from "@/components/landing/HeroSection";
-import { ProblemSection } from "@/components/landing/ProblemSection";
-import { HowItWorksSection } from "@/components/landing/HowItWorksSection";
-import { TestimonialsSection } from "@/components/landing/TestimonialsSection";
-import { LiveTickerSection } from "@/components/landing/LiveTickerSection";
-import { ComparisonSection } from "@/components/landing/ComparisonSection";
-import { PricingSection } from "@/components/landing/PricingSection";
-import { FAQSection } from "@/components/landing/FAQSection";
-import { FinalCTASection } from "@/components/landing/FinalCTASection";
+import { PrivacyPromiseSection } from "@/components/landing/PrivacyPromiseSection";
+import { FeaturesSection } from "@/components/landing/FeaturesSection";
+import { CTASection } from "@/components/landing/CTASection";
 import { Footer } from "@/components/landing/Footer";
 import { ScrollProgress } from "@/components/landing/ScrollProgress";
 
@@ -18,14 +13,9 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
-        <LiveTickerSection />
-        <ProblemSection />
-        <HowItWorksSection />
-        <TestimonialsSection />
-        <ComparisonSection />
-        <PricingSection />
-        <FAQSection />
-        <FinalCTASection />
+        <PrivacyPromiseSection />
+        <FeaturesSection />
+        <CTASection />
       </main>
       <Footer />
     </div>
